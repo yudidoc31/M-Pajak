@@ -87,26 +87,31 @@ https://drive.google.com/drive/u/0/folders/1Zl6RzQEqfV6uva6eZUM15cAvV9lqWtVa    
 ------------------------------------------------------------------------------------------------REPORT
 
 Dear All,
-The following is my Daily Report on Friday, 08/05/2026
+The following is my Daily Report on Wednesday, 13/05/2026
 #Update Progress
-DS: - 10.01 [In Progress]
+DS: - 10.02 [In Progress]
 
 #Testing [M-Pajak]
-   1. Check Login Page base on Figma design
-      - Aktivasi akun Coretax
-      - OnBoarding
-      - SplashScreen
+   1. Check Halaman Utama Page base on Figma design
+      - Beranda
+      - Layanan
+      - Aktivitas
+      - Profile
 
-   2.  Create Test_case scenario to TM-Digital, fitur Login
-      - Login menggunakan akun Coretax
-      - Login Menggunakan Akun Rinjani`
-      - Menampilkan splashscreen saat aplikasi dibuka
-      - Menampilkan Onboarding Halaman Pertama
-      - Menampilkan Onboarding Halaman Kedua
-      - Menampilkan Onboarding Halaman Ketiga
+   2.  Create Test_case scenario to TM-Digital, fitur Halaman Utama/Beranda
+      - Menampilkan banner carousel standar pelayanan
+      - Navigasi carousel banner
+      - Menampilkan menu shortcut
+      - Membuka Aktivasi Akun
+      - Membuka Kalender Pajak
+      - Membuka Peraturan Perpajakan
 
    3. Task 
-      - #Setup device Tester (IOS Mobile)
+      - #3 QA Update_Test 
+        - SplasScreen
+        - Login
+        - Register
+        - Halaman utama
 
 #Problem
       - 
@@ -114,6 +119,7 @@ DS: - 10.01 [In Progress]
 #Documentation
   - Tm.Digital
   - Scrum_Taiga-Sprint_1
+  - Realese_Note
 
 
                                                                                             Gherkin.feature (gherkin2robotframework "file/A/b/c/login")
