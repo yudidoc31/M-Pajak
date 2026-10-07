@@ -25,6 +25,7 @@ Feature: Login M-Pajak
     And saya mengisi Kata Sandi dengan "asbdghfjfjfjf"
     And saya menyelesaikan verifikasi secara manual
     And saya menekan tombol Masuk
+    And saya memasukkan PIN dari environment variable
     Then saya berhasil masuk ke halaman setelah login
 
   @login-negative

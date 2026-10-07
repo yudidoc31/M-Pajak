@@ -1,14 +1,14 @@
 class LoginPage {
     get startButton() {
-        return $('//android.widget.TextView[@text="Mulai"]');
+        return $('//android.widget.Button[@content-desc="Mulai"]');
     }
 
     get skipButton() {
-        return $('//android.widget.TextView[@text="Skip"]');
+        return $('//android.widget.Button[@content-desc="Skip"]');
     }
 
     get coretaxButton() {
-        return $('//android.widget.TextView[@text="Masuk dengan Akun Coretax DJP"]');
+        return $('//android.widget.Button[@content-desc="Masuk dengan Akun Coretax DJP"]');
     }
 
     get appLauncherIcon() {
@@ -24,23 +24,24 @@ class LoginPage {
     }
 
     get loginButton() {
-        return $('//android.widget.TextView[@text="Masuk"]');
+        return $('//android.widget.Button[@content-desc="Masuk"]');
     }
 
     // PIN digit buttons (used after pressing Masuk)
-    get pinButton1() { return $('//android.widget.TextView[@text="1"]'); }
-    get pinButton2() { return $('//android.widget.TextView[@text="2"]'); }
-    get pinButton3() { return $('//android.widget.TextView[@text="3"]'); }
-    get pinButton4() { return $('//android.widget.TextView[@text="4"]'); }
-    get pinButton5() { return $('//android.widget.TextView[@text="5"]'); }
-    get pinButton6() { return $('//android.widget.TextView[@text="6"]'); }
+    getPinButton(digit) {
+        return $(`//*[@content-desc="Tombol ${digit}"]`);
+    }
+
+    getPinButtonByText(digit) {
+        return $(`//android.widget.TextView[@text="${digit}"]`);
+    }
 
     get captchaArea() {
         return $('//android.view.ViewGroup[@content-desc="Saya Bukan Robot"]/android.view.ViewGroup');
     }
 
     get postLoginMarker() {
-        return $('~home');
+        return $('//android.widget.Button[@content-desc="Skip Tutorial"]');
     }
 
     get loginError() {
@@ -48,49 +49,51 @@ class LoginPage {
     }
 
     async openAppFromLauncher() {
-        try {
-            await browser.activateApp('id.go.pajak.djp.beta');
-        } catch (err) {
-            try {
-                await browser.startActivity({
-                    appPackage: 'id.go.pajak.djp.beta',
-                    appActivity: '.MainActivity'
-                });
-            } catch (startErr) {
-                // Ignore launch failures, continue with whichever screen is already open.
-            }
-        }
+        await browser.startActivity({
+            appPackage: 'id.go.pajak.djp.beta',
+            appActivity: '.MainActivity'
+        });
     }
 
     async ensureLoginPageOpen() {
-        try {
-            await this.userIdInput.waitForDisplayed({ timeout: 10000 });
+        if (await this.userIdInput.isDisplayed()) {
             return;
-        } catch (err) {
-            try {
-                await this.startButton.waitForDisplayed({ timeout: 10000 });
-                await this.startButton.click();
-            } catch (startErr) {
-                // Continue to app activation fallback if the splash screen is not present.
-            }
-
-            try {
-                await this.coretaxButton.waitForDisplayed({ timeout: 5000 });
-                await this.coretaxButton.click();
-            } catch (coretaxErr) {
-                // Optional: Coretax button may not appear on every app start.
-            }
-
-            try {
-                await this.skipButton.waitForDisplayed({ timeout: 5000 });
-                await this.skipButton.click();
-            } catch (skipErr) {
-                // Skip tooltip is optional and may not appear on all app states.
-            }
-
-            await this.openAppFromLauncher();
-            await this.userIdInput.waitForDisplayed({ timeout: 20000 });
         }
+
+        let startedFromWelcome = false;
+        if (await this.startButton.isDisplayed()) {
+            await this.startButton.click();
+            startedFromWelcome = true;
+        } else if (await this.coretaxButton.isDisplayed()) {
+            await this.coretaxButton.click();
+        } else {
+            await this.openAppFromLauncher();
+            await this.startButton.waitForDisplayed({ timeout: 20000 });
+            await this.startButton.click();
+            startedFromWelcome = true;
+        }
+
+        if (startedFromWelcome) {
+            await browser.waitUntil(async () => (
+                await this.userIdInput.isDisplayed() ||
+                await this.skipButton.isDisplayed() ||
+                await this.coretaxButton.isDisplayed()
+            ), {
+                timeout: 20000,
+                timeoutMsg: 'Setelah menekan Mulai, layar login atau panduan tidak muncul.'
+            });
+        }
+
+        if (await this.skipButton.isDisplayed()) {
+            await this.skipButton.click();
+        }
+
+        if (!(await this.userIdInput.isDisplayed())) {
+            await this.coretaxButton.waitForDisplayed({ timeout: 15000 });
+            await this.coretaxButton.click();
+        }
+
+        await this.userIdInput.waitForDisplayed({ timeout: 20000 });
     }
 
     async waitForLoginPage() {
@@ -125,30 +128,44 @@ class LoginPage {
     }
 
     async enterPin(pin) {
-        // pin: string or number like '123456'
-        const digits = String(pin).split('');
-        for (const d of digits) {
-            // map digit to the getter; fallback to direct xpath
-            let btn;
-            switch (d) {
-                case '1': btn = this.pinButton1; break;
-                case '2': btn = this.pinButton2; break;
-                case '3': btn = this.pinButton3; break;
-                case '4': btn = this.pinButton4; break;
-                case '5': btn = this.pinButton5; break;
-                case '6': btn = this.pinButton6; break;
-                default:
-                    btn = $(`//android.widget.TextView[@text="${d}"]`);
+        const pinValue = String(pin);
+        if (!/^\d+$/.test(pinValue)) {
+            throw new Error('PIN harus berisi satu atau lebih digit angka.');
+        }
+
+        for (const digit of pinValue) {
+            let button = this.getPinButton(digit);
+            try {
+                await button.waitForDisplayed({ timeout: 3000 });
+            } catch (descriptionError) {
+                button = this.getPinButtonByText(digit);
+                try {
+                    await button.waitForDisplayed({ timeout: 3000 });
+                } catch (textError) {
+                    throw new Error(
+                        `Tombol PIN '${digit}' tidak ditemukan dengan content-desc maupun teks. ` +
+                        `content-desc: ${descriptionError.message}. teks: ${textError.message}.`,
+                        { cause: textError }
+                    );
+                }
             }
 
             try {
-                await btn.waitForDisplayed({ timeout: 5000 });
-                await btn.click();
-                await browser.pause(200);
-            } catch (err) {
-                // If a digit button is not found/clickable, throw so the caller can handle
-                throw new Error(`PIN digit '${d}' not available or not clickable`);
+                await button.click();
+            } catch (clickError) {
+                try {
+                    await browser.execute('mobile: clickGesture', {
+                        elementId: button.elementId
+                    });
+                } catch (gestureError) {
+                    throw new Error(
+                        `Gagal menekan tombol PIN '${digit}'. Klik standar gagal: ${clickError.message}. ` +
+                        `clickGesture juga gagal: ${gestureError.message}.`,
+                        { cause: gestureError }
+                    );
+                }
             }
+            await browser.pause(200);
         }
     }
 
@@ -158,6 +175,11 @@ class LoginPage {
 
     async waitForLoginResult() {
         await this.postLoginMarker.waitForDisplayed({ timeout: 30000 });
+    }
+
+    async skipTutorial() {
+        await this.postLoginMarker.click();
+        await this.postLoginMarker.waitForDisplayed({ reverse: true, timeout: 10000 });
     }
 
     async waitForLoginError() {

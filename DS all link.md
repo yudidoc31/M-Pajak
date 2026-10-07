@@ -51,18 +51,28 @@ https://drive.google.com/drive/folders/1nU1aXb9TamQa0y46w5kha5mUeB4hiJPL
 ------------------------------------------------------------------------------------------------REPORT
 
 Dear All,
-The following is my Daily Report on Thursday, 01/10/2026
-DS: 10. (In Progress)
+The following is my Daily Report on Wednesday, 07/10/2026
+DS: -
 
 #Testing
-Review Check New build apk Android & IOS version: 4.0.42 / 4.0.11 (42) dengan perubahan warna border/putih ketika fungsi darkmode diterapkan.
-  Check fied data fitur Profil / Pengaturan Aplikasi [success]
-    - Mode Tampilan
-    - Bahasa
+Review Check New build apk Android & IOS version: 4.0.43 / 4.0.11 (43) dengan perubahan warna border/putih ketika fungsi darkmode diterapkan.
+  Check update perubahan ikon arrow, close & selected data field ketika darkmode diaktifkan di beberapa fitur:
+  1. Pencatatan [success]
+    - page field radio button total Omzet perTahun
+    - page field radio button Daftar Pencatatan Transaksi
+    - Hitung Pajak
 
-  Check field data filtering fitur NavMenu Aktivitas [success]
-    - Jenis Aktivitas
-    - Periode
+  2. Issue fitur Pembayaran/Buat Kode Nilling atas Tagihan Pajak [Need to Fix]
+    - field border warna (Cari Tagihan Berdasarkan Tanggal Jatuh Tempo)
+
+  3. Issue fitur Bukti Potong Saya [Need to Fix]
+    - 3 field belum tergati ketika darmode diaktifkan
+
+  4. Review Check Sertifikat digital [success]
+    - Check status Valid
+
+  5. Review issue Check fitur "Pengajuan Permohonan"/Konfirmasi Status Wajib Pajak [Need to Fix]
+    - ikon field tahun tidak tampak/tidak jelas
 
 #Problem
   - 

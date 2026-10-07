@@ -47,9 +47,19 @@ When('saya menekan tombol Masuk', async () => {
     await LoginPage.submit();
 });
 
+When('saya memasukkan PIN dari environment variable', async () => {
+    const pin = process.env.MPAJAK_PIN;
+    if (!pin) {
+        throw new Error('Environment variable MPAJAK_PIN belum diisi.');
+    }
+
+    await LoginPage.enterPin(pin);
+});
+
 Then('saya berhasil masuk ke halaman setelah login', async () => {
     await LoginPage.waitForLoginResult();
     await expect(LoginPage.postLoginMarker).toBeDisplayed();
+    await LoginPage.skipTutorial();
 });
 
 Then('saya melihat indikasi login gagal', async () => {
