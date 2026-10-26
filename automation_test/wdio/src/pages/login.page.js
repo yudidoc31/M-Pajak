@@ -27,6 +27,10 @@ class LoginPage {
         return $('//android.widget.Button[@content-desc="Masuk"]');
     }
 
+    get homePageMarker() {
+        return $('//android.view.ViewGroup[@content-desc="Kredit Tersisa"]');
+    }
+
     // PIN digit buttons (used after pressing Masuk)
     getPinButton(digit) {
         return $(`//*[@content-desc="Tombol ${digit}"]`);
@@ -68,9 +72,28 @@ class LoginPage {
             await this.coretaxButton.click();
         } else {
             await this.openAppFromLauncher();
-            await this.startButton.waitForDisplayed({ timeout: 20000 });
-            await this.startButton.click();
-            startedFromWelcome = true;
+            await browser.waitUntil(async () => (
+                await this.userIdInput.isDisplayed() ||
+                await this.startButton.isDisplayed() ||
+                await this.skipButton.isDisplayed() ||
+                await this.coretaxButton.isDisplayed() ||
+                await this.homePageMarker.isDisplayed()
+            ), {
+                timeout: 20000,
+                timeoutMsg: 'Aplikasi terbuka, tetapi layar Mulai, login, panduan, atau beranda tidak ditemukan.'
+            });
+
+            if (await this.startButton.isDisplayed()) {
+                await this.startButton.click();
+                startedFromWelcome = true;
+            } else if (await this.homePageMarker.isDisplayed()) {
+                throw new Error(
+                    'Aplikasi sudah berada di halaman beranda (sesi login masih aktif). ' +
+                    'Logout dari aplikasi sebelum menjalankan skenario login.'
+                );
+            } else if (await this.coretaxButton.isDisplayed()) {
+                await this.coretaxButton.click();
+            }
         }
 
         if (startedFromWelcome) {

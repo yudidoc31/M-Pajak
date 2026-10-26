@@ -23,4 +23,20 @@ cd Yudi Mulyadi@Workpro-Lite MINGW64 ~/OneDrive/Documents/Mpajak Project/automat
                 V note (pastikan server appium dijalankan)
 $ MPAJAK_PIN=123456 npx wdio run wdio.conf.js --spec ./features/login.feature --cucumberOpts.tagExpression '@login-success'
 
+5. menjalankan 1 file feature
+    $ npx wdio run ./wdio.conf.js
+            hanya file feature login
+    $ npx wdio run ./wdio.conf.js --spec ./features/login.feature
+            Jika terminal berada di folder utama proyek, gunakan path relatif dari sana:
+    $ npx wdio run ./automation_test/wdio/wdio.conf.js
+            menjalankan dengan Input Pin otomatis
+    $ MPAJAK_PIN='123456' npx wdio run ./wdio.conf.js --spec ./features/login.feature --cucumberOpts.tagExpression '@login-success'
+
+6. Perintah menjalankan file feature kedua (layanan.feature)
+$ MPAJAK_USER_ID='1322111111111111' MPAJAK_PASSWORD='abcdef123456' MPAJAK_PIN='123456' npx wdio run ./wdio.conf.js --spec ./features/menuLayanan.feature --cucumberOpts.tagExpression '@NavMenu-Layanan'
+
+
+7. masih error
+npx wdio run ./wdio.conf.js --spec ./features/menuLayanan.feature
+
 *****************************************************************************************************************

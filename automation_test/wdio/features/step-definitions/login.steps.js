@@ -1,7 +1,7 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
 const LoginPage = require('../../src/pages/login.page.js');
 
-Given('saya berada di halaman login M-Pajak', async () => {
+Given('saya telah membuka aplikasi M-Pajak', async () => {
     await LoginPage.ensureLoginPageOpen();
 });
 

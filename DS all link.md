@@ -51,39 +51,62 @@ https://drive.google.com/drive/folders/1nU1aXb9TamQa0y46w5kha5mUeB4hiJPL
 ------------------------------------------------------------------------------------------------REPORT
 
 Dear All,
-The following is my Daily Report on Wednesday, 07/10/2026
+The following is my Daily Report on Friday, 23/10/2026
 DS: -
 
 #Testing
-Review Check New build apk Android & IOS version: 4.0.43 / 4.0.11 (43) dengan perubahan warna border/putih ketika fungsi darkmode diterapkan.
-  Check update perubahan ikon arrow, close & selected data field ketika darkmode diaktifkan di beberapa fitur:
-  1. Pencatatan [success]
-    - page field radio button total Omzet perTahun
-    - page field radio button Daftar Pencatatan Transaksi
-    - Hitung Pajak
+Check New build IOS version: 4.0.11 (50) [Feedback Client]
+#Lapor SPT
+  - (Review Fixing Test) Perubahan step 5 "Before bug dummy data to step 2" [Need to fix]
 
-  2. Issue fitur Pembayaran/Buat Kode Nilling atas Tagihan Pajak [Need to Fix]
-    - field border warna (Cari Tagihan Berdasarkan Tanggal Jatuh Tempo)
+#Pencatatan [suucee]
+  - Perubahan button "Buat Pencatatan" menempel (Scrolling) pada bingkai halaman dashboard di fitur Pencatatan
+  - Perubahan Submenu (Sesuai Web Coretax). dengan tata letak field
+    1. Membuat Buku Catatan Sederhana
+      - Nama TKU
+      - ID TKU
+      - Nomor Transaksi
+      - Tanggal Transaksi
+      - Nama Pelanggan
+      - Tempat Kegiatan Usaha
 
-  3. Issue fitur Bukti Potong Saya [Need to Fix]
-    - 3 field belum tergati ketika darmode diaktifkan
+    2. Add Detail Pencatatan
+      - Rincian Barang/Jasa
+      - Harga Per Unit
+      - Kuantitas
+      - Total Harga
 
-  4. Review Check Sertifikat digital [success]
-    - Check status Valid
+#Lapor SPT [success]
+  - Tets Error Page Step 2 (Fixing) "Penghasilan Neto Dalam Negeri.
+    Expected s/d step 6
 
-  5. Review issue Check fitur "Pengajuan Permohonan"/Konfirmasi Status Wajib Pajak [Need to Fix]
-    - ikon field tahun tidak tampak/tidak jelas
+#TM.Digital/ Menambahkan tipe platform dibeberapa fitur
+  - Pencatatan
+  - Pembayaran
+  - Kunjung Pajak
+  - Kalkulator Pajak
+  - KPP Terdekat
+  - Kalender Pajak
+  - Navigasi Menu Aktivitas
+  - Pengajuan Permohonan
+  - Tracking Permohonan
+  - Daftar Fasilitas Saya
 
 #Problem
-  - 
+- Android belum ada pengecekkan (waiting new build)
 
 Dokumentasi
 External Demo Sprint 10
 
 <!-- DS RANGKAI KATA: Jumat 29-05-2026 -->
     
-      
 # --- #lisbug
+
+buat besok dengan build baru Hari jumat: 23-10-2026
+
+
+
+
 
 
 AUTOMATION_TEST !+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
@@ -107,18 +130,18 @@ AUTOMATION_TEST !+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+
 
 https://meet.google.com/dnb-nbsj-beo
 
-oke baik terima kasih kang
-emz, untuk Current task di m-pajaknya lebih banyak ngejar ke Penambahan skenario di tm digital sama ada beberapa feedback hasil demo external di labeling masih ada kesalahan penulisan, di tiket sprint 10 kemarin:
+oke baik terima kasih teh
+emz, dari saya masih lanjut review fungsi tampilan darkmode di semua fitur terutama di tampilan map yang berada di fitur kunjung pajak, udah di fixing dari team dev dan udah di test kembali hasilnya udah sesuai, lalu di halaman pilihan data ketika akun baru yg akan diaktifasi. itu udah aman juga sama ada beberapa warna border radio button yg belum menyesuaikan dengan tampilan darkmode namun udah pengecheckan ulang di semua fitur, dan hasilnya aman juga, sama nambahin test scenario juga di tm digital. jadi seminggu kemarin banyaknya bulak balik tektokan sama team dev dan review all di setiap build baru di kedua platform (Android IOS) itu paling update minggu kemaran mengenai task yang dikerjakan.
   -#138Dark Mode (Sprint 10)
-  - Issue:
-    - #text button typo Bantuan(Selengkapnya), Daftar Fasilitas
-  - TM.Digitasl (Fitur & Skenario Test)
+    - Bukti Potong
+    - Pembayaran (Kode Biling)
+    - Pengajuan Permohonan
 
-nextnya: masih lanjut pengecheckan untuk feedback di perubahan warna border radiobutton.
-  - [Feedback] Test Perubahan warna putih "border radio button" Fungsi Darmode All Feature
+untuk nextnya, mau lanjut cek ulang dengan adanya dokumen feedback dari client, untuk disesuaikan dengan perubahan aplikasi dibuild baru hasil fixing dari team dev, terutama difitur lapor spt dan pencatatan yg mengalami perubahan. kebetulan udah ada juga build barunya untuk apk dan IOS. itu paling Teh
 
+untuk tambahannya belum ada, sama kendalanya juga belum ada mudah2.n engga ada. itu paling teh updatenya.
 
-  Tambahan
+  Tambahans
    - xternal demo di sprint 9
 
 
