@@ -8,7 +8,7 @@ class LayananPage {
     }
 
 
-    get LayananPage() {
+    get layananPageMarker() {
         return $('//*[@content-desc="Layanan Perpajakan" or @text="Layanan Perpajakan"]');
     }
 

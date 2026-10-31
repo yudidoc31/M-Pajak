@@ -51,52 +51,25 @@ https://drive.google.com/drive/folders/1nU1aXb9TamQa0y46w5kha5mUeB4hiJPL
 ------------------------------------------------------------------------------------------------REPORT
 
 Dear All,
-The following is my Daily Report on Friday, 23/10/2026
+The following is my Daily Report on Friday, 30/10/2026
 DS: -
 
 #Testing
-Check New build IOS version: 4.0.11 (50) [Feedback Client]
-#Lapor SPT
-  - (Review Fixing Test) Perubahan step 5 "Before bug dummy data to step 2" [Need to fix]
-
-#Pencatatan [suucee]
-  - Perubahan button "Buat Pencatatan" menempel (Scrolling) pada bingkai halaman dashboard di fitur Pencatatan
-  - Perubahan Submenu (Sesuai Web Coretax). dengan tata letak field
-    1. Membuat Buku Catatan Sederhana
-      - Nama TKU
-      - ID TKU
-      - Nomor Transaksi
-      - Tanggal Transaksi
-      - Nama Pelanggan
-      - Tempat Kegiatan Usaha
-
-    2. Add Detail Pencatatan
-      - Rincian Barang/Jasa
-      - Harga Per Unit
-      - Kuantitas
-      - Total Harga
-
-#Lapor SPT [success]
-  - Tets Error Page Step 2 (Fixing) "Penghasilan Neto Dalam Negeri.
-    Expected s/d step 6
-
-#TM.Digital/ Menambahkan tipe platform dibeberapa fitur
-  - Pencatatan
-  - Pembayaran
-  - Kunjung Pajak
-  - Kalkulator Pajak
-  - KPP Terdekat
-  - Kalender Pajak
-  - Navigasi Menu Aktivitas
-  - Pengajuan Permohonan
-  - Tracking Permohonan
-  - Daftar Fasilitas Saya
+  .Melanjutkan Review Test (Android & IOS: New Version) untuk kebutuhan TM Digital dengan penambahan type Platform dibeberapa fitur: [success]
+    - [Mobile] Profil Saya - Alamat
+    - [Mobile] Profil Saya - Unit Pajak Keluarga
+    - [Mobile] Profil Saya - Tempat Kegiatan Usaha
+    - [Mobile] Verifikasi Dokumen
+    - [Mobile] Lapor SPT
 
 #Problem
-- Android belum ada pengecekkan (waiting new build)
+  - 
 
-Dokumentasi
-External Demo Sprint 10
+
+Others:
+  #Explore automation test with (WDIO, Appium Inspector) - Mpajak.Apk
+    - Login Feature
+    - Change to NavMenu "Layanan"
 
 <!-- DS RANGKAI KATA: Jumat 29-05-2026 -->
     
@@ -130,24 +103,16 @@ AUTOMATION_TEST !+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+
 
 https://meet.google.com/dnb-nbsj-beo
 
-oke baik terima kasih teh
-emz, dari saya masih lanjut review fungsi tampilan darkmode di semua fitur terutama di tampilan map yang berada di fitur kunjung pajak, udah di fixing dari team dev dan udah di test kembali hasilnya udah sesuai, lalu di halaman pilihan data ketika akun baru yg akan diaktifasi. itu udah aman juga sama ada beberapa warna border radio button yg belum menyesuaikan dengan tampilan darkmode namun udah pengecheckan ulang di semua fitur, dan hasilnya aman juga, sama nambahin test scenario juga di tm digital. jadi seminggu kemarin banyaknya bulak balik tektokan sama team dev dan review all di setiap build baru di kedua platform (Android IOS) itu paling update minggu kemaran mengenai task yang dikerjakan.
-  -#138Dark Mode (Sprint 10)
-    - Bukti Potong
-    - Pembayaran (Kode Biling)
-    - Pengajuan Permohonan
+oke baik terima kasih Kang Tito, kang  sebelumnya karena sudah diberi kesempatan untuk berbicara pada acara weekly minggu ini.
+dari saya update project di mpajak untuk current task di minggu kemarin, pengecekan ulang sesuai feedback yg mengalami perubahan flow dan labelling, dari dokumen client di sprint terakhir, yaitu pada fitur
+  -#Feedback (External Demo)
+    - #93Lapor SPT - Buat Konsep
+    - #119Pencatatan
+    - lalu permintaan dari pc untuk Dokumentasi (Rekap Sprint 1 s/d 10) di semua fitur
+    - Update TM Digital - penambahan skenario di fitur yg belum lengkap.
+untuk nextnya, Paling lanjut melengkapi tm digital dengan attachmenntnya dan udah diakhir juga untuk diproject mpajak. lalu tambahannya lebih banyak prepare untuk di assigne ke project baru dan mudah2.n siap. yang dibantu oleh kang tito dan teh putri.
 
-untuk nextnya, mau lanjut cek ulang dengan adanya dokumen feedback dari client, untuk disesuaikan dengan perubahan aplikasi dibuild baru hasil fixing dari team dev, terutama difitur lapor spt dan pencatatan yg mengalami perubahan. kebetulan udah ada juga build barunya untuk apk dan IOS. itu paling Teh
-
-untuk tambahannya belum ada, sama kendalanya juga belum ada mudah2.n engga ada. itu paling teh updatenya.
-
-  Tambahans
-   - xternal demo di sprint 9
-
-
-   Kendala:
-
-
+sama lebih mendalami teori metodhe pengerjaan testing sebagai QA. itu paling, kalau kendalanya belum ada.
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # TEST DATA
 Aktivasi akun ada 3 data yang harus di tes
